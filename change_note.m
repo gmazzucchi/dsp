@@ -35,7 +35,7 @@ end
 
 % major chord
 
-audiowrite("major_chord.wav", original_audio_content, up_semitones(frequency_sampling, 12));
+% audiowrite("major_chord.wav", original_audio_content, up_semitones(frequency_sampling, 12));
 
 % the formula for changing note is Fs: (throot(2, 12) ^ nsemitones)
 

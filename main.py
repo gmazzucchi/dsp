@@ -1,33 +1,48 @@
-from playsound import playsound
-LOOP_POINT = 2610
+'''
+Risultati studio mattina 17 marzo:
+lavorare direttamente con il segnale per aggiustare il pitch non puo' funzionare: se hai rapporti finiti lo puoi anche fare e hai una approssimazione (tra il resto modificando parecchio il suono perche' stai tirando via roba), bisogna necessariamente "interpolare" in qualche modo e fare un resampling fatto bene. Il principio e' che dovresti re-immaginare l'audio digitale come segnale continuo e poi prenderti i samples a partire da quello, non puoi lavorare direttamente in digitale. Forse si puo' fare qualcosa con la fft (quasi sicuramente), portando tutto in dominio frequenza e poi tagliando roba direttamente da li, ma bisogna vedere come fare.
 
-# import required module
+Tutto e' comunque complicato da portare in un micro A MENO CHE non si riesca ad elaborare un filtro FIR o IIR che faccia sia pitch che magari accordi e poi si puo' esportare tutto su micro usando il DSP core.
+In ogni caso servono almeno 100kByte di flash e di RAM per tenere il primo sampling a 44 kHz. A meno che gia' con quello a 12 o a 20 non vada gia' bene, in tal caso puo' bastare di meno.
+'''
 
-# for playing note.wav file
-playsound('pipe_organ_base_sound.wav')
-print('playing sound using playsound')
+import wave, os
 
-C = [8.18,	16.35,	32.70,	65.41,	130.81,	261.63,	523.25,
-     1046.50,	2093.00,	4186.01,	8372.02,	16744.04]
-Db = [8.66,	17.32,	34.65,	69.30,	138.59,	277.18,	554.37,
-      1108.73,	2217.46,	4434.92,	8869.84,	17739.69]
-D = [9.18,	18.35,	36.71,	73.42,	146.83,	293.66,	587.33,
-     1174.66,	2349.32,	4698.64,	9397.27,	18794.54]
-Eb = [9.72,	19.45,	38.89,	77.78,	155.56,	311.13,	622.25,
-      1244.51,	2489.02,	4978.03,	9956.06,	19912.13]
-E = [10.30,	20.60,	41.20,	82.41,	164.81,	329.63,	659.26,
-     1318.51,	2637.02,	5274.04,	10548.08,	21096.16]
-F = [10.91,	21.83,	43.65,	87.31,	174.61,	349.23,	698.46,
-     1396.91,	2793.83,	5587.65,	11175.30,	22350.61]
-Gb = [11.56,	23.12,	46.25,	92.50,	185.00,	369.99,	739.99,
-      1479.98,	2959.96,	5919.91,	11839.82,	23679.64]
-G = [12.25,	24.50,	49.00,	98.00,	196.00,	392.00,	783.99,
-     1567.98,	3135.96,	6271.93,	12543.85,	25087.71]
-Ab = [12.98,	25.96,	51.91,	103.83,	207.65,	415.30,	830.61,
-      1661.22,	3322.44,	6644.88,	13289.75,	26579.50]
-A = [13.75,	27.50,	55.00,	110.00,	220.00,	440.00,	880.00,
-     1760.00,	3520.00,	7040.00,	14080.00,	28160.00]
-Bb = [14.57,	29.14,	58.27,	116.54,	233.08,	466.16,	932.33,
-      1864.66,	3729.31,	7458.62,	14917.24,	29834.48]
-B = [15.43,	30.87,	61.74,	123.47,	246.94,	493.88,	987.77,
-     1975.53,	3951.07,	7902.13,	15804.27,	31608.53]
+SEMITONE_RATIO = 196/185
+
+frequency_table = []
+for sem_idx in range(-24, 0):
+     frequency_table.append(2 ** (sem_idx / 12)) 
+
+def nskipping_elem(sem: int):
+     return (1 - sem) / sem
+
+def build_new_frames(frames: list, nframes: int, loop_point_sample_44khz: int, sem: float):
+     new_frames = []
+     return new_frames
+
+if __name__ == '__main__':
+
+     print(frequency_table)
+     # print(len(frequency_table))
+     loop_point_sample_44khz = 9591
+     
+     wave_file = wave.open('sample_44kH.wav', 'r')
+     assert(wave_file.getframerate() == 44100)
+     assert(wave_file.getnchannels() == 1)
+     assert(wave_file.getsampwidth() == 2)
+     nframes = wave_file.getnframes()
+     frames = wave_file.readframes(nframes)
+
+     idx = 0     
+     for sem in frequency_table:
+          new_frames = build_new_frames(frames, nframes, loop_point_sample_44khz, sem)
+          output_wave_file = wave.open(os.path.join("samples", "" + str(idx).zfill(2) + ".wav"), 'w')
+          idx += 1
+          output_wave_file.setframerate(12000)
+          output_wave_file.setnchannels(1)
+          output_wave_file.setsampwidth(2)
+          output_wave_file.setnframes(new_frames)
+          output_wave_file.close()
+
+

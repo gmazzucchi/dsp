@@ -1,14 +1,14 @@
-import wave, os
+import os, json, soundfile
+
+def generate_c_code(fp: str, frames: list, loop_point: int, nframes: int):
+    pass
 
 if __name__ == "__main__":
-    files = os.listdir()    
+    files = os.listdir()
+    loop_point_data = json.load(open("loop_points.json", "r"))
     for file in files:
         if file.endswith(".wav"):
-            wavobj: wave.Wave_read = wave.open(file, "r")
-            nchannels = wavobj.getnchannels()
-            nframes = wavobj.getnframes()
-            frames = wavobj.readframes(nframes=nframes)
-            framerate = wavobj.getframerate()
-            print(file, nchannels, nframes, framerate)
-            wavobj.close()
+            (x, y) = soundfile.read(file)
+            assert(y)
+            generate_c_code(file, )
 

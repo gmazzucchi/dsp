@@ -1,5 +1,0 @@
-
-'''
-Import base sample
-
-'''

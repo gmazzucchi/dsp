@@ -1,0 +1,129 @@
+{
+    "content": [
+        {
+            "note": "C1",
+            "loop_point": 9727,
+            "nframes": 52134
+        },
+        {
+            "note": "C#1",
+            "loop_point": 9182,
+            "nframes": 49208
+        },
+        {
+            "note": "D1",
+            "loop_point": 8667,
+            "nframes": 46447
+        },
+        {
+            "note": "Eb1",
+            "loop_point": 8181,
+            "nframes": 43841
+        },
+        {
+            "note": "E1",
+            "loop_point": 7722,
+            "nframes": 41381
+        },
+        {
+            "note": "F1",
+            "loop_point": 7289,
+            "nframes": 39059
+        },
+        {
+            "note": "F#1",
+            "loop_point": 6880,
+            "nframes": 36867
+        },
+        {
+            "note": "G1",
+            "loop_point": 6494,
+            "nframes": 34798
+        },
+        {
+            "note": "G#1",
+            "loop_point": 6129,
+            "nframes": 32844
+        },
+        {
+            "note": "A1",
+            "loop_point": 5785,
+            "nframes": 31000
+        },
+        {
+            "note": "Bb1",
+            "loop_point": 5460,
+            "nframes": 29260
+        },
+        {
+            "note": "B1",
+            "loop_point": 5153,
+            "nframes": 27617
+        },
+        {
+            "note": "C2",
+            "loop_point": 5382,
+            "nframes": 28206
+        },
+        {
+            "note": "C#2",
+            "loop_point": 5080,
+            "nframes": 26623
+        },
+        {
+            "note": "D2",
+            "loop_point": 4795,
+            "nframes": 25129
+        },
+        {
+            "note": "Eb2",
+            "loop_point": 4525,
+            "nframes": 23718
+        },
+        {
+            "note": "E2",
+            "loop_point": 4270,
+            "nframes": 22386
+        },
+        {
+            "note": "F2",
+            "loop_point": 4032,
+            "nframes": 21130
+        },
+        {
+            "note": "F#2",
+            "loop_point": 3805,
+            "nframes": 19944
+        },
+        {
+            "note": "G2",
+            "loop_point": 3591,
+            "nframes": 18824
+        },
+        {
+            "note": "G#2",
+            "loop_point": 3389,
+            "nframes": 17767
+        },
+        {
+            "note": "A2",
+            "loop_point": 3198,
+            "nframes": 16770
+        },
+        {
+            "note": "Bb2",
+            "loop_point": 3018,
+            "nframes": 15828
+        },
+        {
+            "note": "B2",
+            "loop_point": 2848,
+            "nframes": 14939
+        },
+        {
+            "note": "C3",
+            "loop_point": 2688,
+            "nframes": 14100
+        }
+    ]
+}

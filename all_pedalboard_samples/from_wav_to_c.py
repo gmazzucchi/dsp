@@ -44,6 +44,15 @@ int16_t sample_{fp}_22kHz_corpo[SAMPLE_{FP}_22KHZ_CORPO_L] = {{
 ''')
 
 
+def accordo(n1, n2):
+    L = min(len(n1), len(n2))
+    n3 = [0] * L
+    for i in range(0, L-1):
+        n3[i] = n1[i] + n2[i]
+    n4 = [*n3, *n3, *n3, *n3]
+    soundfile.write("test_1.wav", n4, samplerate=22050)
+
+
 # Si gode
 def augmentation_test(sample: str):
     lp = LOOP_POINT_DATA[sample]["lp_start"]
@@ -51,7 +60,7 @@ def augmentation_test(sample: str):
     (frames, nframes) = soundfile.read(sample + ".wav")
     attacco_frames = frames[:lp]
     corpo_frames = frames[lp:ls]
-    dsem = 5
+    dsem = 4
     ratio = 2**(dsem/12)
     """ for (size_t iattacco = 0; iattacco < c_attacco_len; iattacco++) {
     double x = (iattacco * ratio);
@@ -80,6 +89,8 @@ def augmentation_test(sample: str):
         z = math.trunc(x) % IL
         corpo_frames_2[i] = corpo_frames[z] * \
             (1 - y) + corpo_frames[(z + 1) % IL] * y
+
+    # accordo(corpo_frames, corpo_frames_2)
     final_frames = [*attacco_frames_2, *corpo_frames_2, *corpo_frames_2, *corpo_frames_2, *corpo_frames_2, *corpo_frames_2,
                     *corpo_frames_2, *corpo_frames_2, *corpo_frames_2, *corpo_frames_2, *corpo_frames_2, *corpo_frames_2, *corpo_frames_2]
     soundfile.write("test.wav", final_frames, samplerate=22050)
